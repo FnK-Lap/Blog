@@ -1,0 +1,16 @@
+{% extends 'FnKBlogBundle::Layout/layout.html.twig' %}
+
+{% block title %} - Posts{% endblock %}
+
+{% block content %}
+    <a href="{{path('blog_post_new')}}">Nouveau post</a>
+    <a href="{{path('blog_category_new')}}">Nouvelle categorie</a>
+    {% for post in posts %}
+        <div>
+            <h3>{{post.title}}</h3>
+            <p>{{post.category.name}}</p>
+            <p>{{post.body}}</p>
+        </div>
+        <hr>
+    {% endfor %}
+{% endblock %}

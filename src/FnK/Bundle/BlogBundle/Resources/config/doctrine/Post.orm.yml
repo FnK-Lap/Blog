@@ -1,0 +1,29 @@
+FnK\Bundle\BlogBundle\Entity\Post:
+    type: entity
+    repositoryClass: FnK\Bundle\BlogBundle\Entity\PostRepository
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: '255'
+        body:
+            type: text
+            length: null
+        is_published:
+            type: boolean
+            length: null
+
+    manyToOne:
+        category:
+            targetEntity: FnK\Bundle\BlogBundle\Entity\Category
+            inversedBy: posts
+            joinColumn:
+                name: category_id
+                referencedColumnName: id
+    lifecycleCallbacks: {  }

@@ -1,0 +1,4 @@
+fn_k_blog:
+    resource: "@FnKBlogBundle/Resources/config/routing.yml"
+    prefix:   /
+

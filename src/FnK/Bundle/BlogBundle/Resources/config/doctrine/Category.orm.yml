@@ -1,0 +1,20 @@
+FnK\Bundle\BlogBundle\Entity\Category:
+    type: entity
+    repositoryClass: FnK\Bundle\BlogBundle\Entity\CategoryRepository
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '255'
+
+    oneToMany:
+        posts:
+            targetEntity: FnK\Bundle\BlogBundle\Entity\Post
+            mappedBy: category
+    lifecycleCallbacks: {  }

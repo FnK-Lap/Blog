@@ -1,0 +1,11 @@
+FnK\Bundle\BlogBundle\Entity\Post:
+    properties:
+        title:
+            - NotBlank: ~
+            - Length: 
+                min: 4
+
+FnK\Bundle\BlogBundle\Entity\Category:
+    properties:
+        name:
+            - NotBlank: ~
