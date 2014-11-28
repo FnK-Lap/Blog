@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Request;
 use FnK\Bundle\BlogBundle\Form\PostType;
 use FnK\Bundle\BlogBundle\Entity\Post;
 
+use FnK\Bundle\BlogBundle\Form\SearchType;
+
 class PostController extends Controller
 {
     public function listAction()
@@ -38,6 +40,27 @@ class PostController extends Controller
 
         return $this->render('FnKBlogBundle:Blog:newPost.html.twig', array(
             'form' =>   $form->createView()
+        ));
+    }
+
+    public function searchAction(Request $request)
+    {
+        $form = $this->createForm(new SearchType());
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) 
+        {
+            $data = $form->getData();
+            $posts = $this->getDoctrine()->getRepository('FnKBlogBundle:Post')->findByTitleAndPublished($data['title'], $data['is_published']);
+
+            return $this->render('FnKBlogBundle:Blog:search.html.twig', array(
+                'form' => $form->createView(),
+                'posts' => $posts
+            ));
+        }
+        return $this->render('FnKBlogBundle:Blog:search.html.twig', array(
+            'form' => $form->createView()
         ));
     }
 }

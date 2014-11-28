@@ -16,5 +16,16 @@ class PostRepository extends EntityRepository
             ->setParameter('published', true) 
             ->getQuery()
             ->getResult();
-        }
+    }
+
+    public function findByTitleAndPublished($title, $isPublished)
+    {
+        return $this->createQueryBuilder('post')
+            ->where('post.title LIKE :title')
+            ->setParameter('title', '%'.$title.'%')
+            ->andWhere('post.is_published = :published')
+            ->setParameter('published', $isPublished)
+            ->getQuery()
+            ->getResult();
+    }
 }

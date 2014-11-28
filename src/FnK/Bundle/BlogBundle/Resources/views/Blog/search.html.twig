@@ -1,0 +1,24 @@
+{% extends 'FnKBlogBundle::Layout/layout.html.twig' %}
+
+{% block title %} - Rechercher{% endblock %}
+
+{% block content %}
+    {{form_errors(form)}}
+    {{form_start(form, {'action': path('blog_search'), 'method': 'POST'})}}
+        {{form_widget(form)}}
+        <input type="submit" value='Enregistrer'>
+    {{form_end(form)}}
+    {% if posts is defined %}
+        {% for post in posts %}
+            <div>
+                <h3>{{post.title}}</h3>
+                <p>{{post.category.name}}</p>
+                <p>{{post.body}}</p>
+            </div>
+            <hr>
+        {% else %}
+        Aucun posts n'a ete trouve
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}
